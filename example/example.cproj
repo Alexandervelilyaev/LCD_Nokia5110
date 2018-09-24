@@ -28,15 +28,15 @@
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.34.1" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.34.1" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -73,6 +73,7 @@
   <avrgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
       <Value>D:\microprogramming\avr\test0\LCD_Nokia5110\LCD_Nokia5110\Debug</Value>
+      <Value>D:\microprogramming\avr\LCD_Nokia5110\LCD_Nokia5110\Debug</Value>
     </ListValues>
   </avrgcc.linker.libraries.LibrarySearchPaths>
   <avrgcc.assembler.general.IncludePaths>
@@ -118,6 +119,7 @@
   <avrgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
       <Value>D:\microprogramming\avr\test0\LCD_Nokia5110\LCD_Nokia5110\Debug</Value>
+      <Value>D:\microprogramming\avr\LCD_Nokia5110\LCD_Nokia5110\Debug</Value>
     </ListValues>
   </avrgcc.linker.libraries.LibrarySearchPaths>
   <avrgcc.assembler.general.IncludePaths>
