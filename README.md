@@ -13,7 +13,7 @@ int main(void)
 	InitLCD('B', 1, 2, 3, 4, 5);//In this case, the pinout is the following:
 	//LCD connected to PORTB (RST - PORTB1, SCE - PORTB2, DC - PORTB3, DIN - PORTB4, CLK - PORTB5)
 
-	//Dwaring something similar to the "Little Bear"
+	//Drawing something similar to the "Little Bear"
 	SetPixel(15,5,1);
 	SetPixel(10,15,1);
 	SetPixel(30,25,1);
