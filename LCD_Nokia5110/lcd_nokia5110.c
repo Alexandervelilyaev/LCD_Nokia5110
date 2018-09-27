@@ -135,9 +135,9 @@ void InitLCD(uint8_t port, uint8_t rst, uint8_t sce, uint8_t dc, uint8_t din, ui
 	TemperatureControl(0, 1);//set typical temperature coefficient
 	BiasSystem(0, 1, 1);//set optimal bias(1:48)
 	ClearBuffer();//clear buffer
-	Flush();
 	FunctionSet(0, 0, 0);//switch to normal instruction set
 	DisplayControl(1, 0);//set normal mode
+	Flush();
 }
 
 //Set pixel to buffer
@@ -151,6 +151,8 @@ void SetPixel(uint8_t x, uint8_t y, uint8_t value)
 //Flush buffer data(set data from buffer to DDRAM)
 void Flush()
 {
+	SetRAMAddressX(0,0,0,0,0,0,0);
+	SetRAMAddressY(0,0,0);
 	for (int i = 0; i < WIDTH * 6; i++)
 	{
 		Data(buffer[i]);
