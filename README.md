@@ -10,8 +10,8 @@ This library was developed and tested for microcontroller Atmega328p. But I'm su
 
 int main(void)
 {
-	InitLCD('B', 1, 2, 3, 4, 5);//In this case, the pinout is the following:
-	//LCD connected to PORTB (RST - PORTB1, SCE - PORTB2, DC - PORTB3, DIN - PORTB4, CLK - PORTB5)
+	InitLCD(1, 2, 3, 4, 5);//In this case, the pinout is the following: (RST - 1, SCE - 2, DC - 3, DIN - 4, CLK - 5)
+	//LCD connected to PORT, that defined in header file "lcd_nokia5110.h", identifier "PORTx"
 
 	//Drawing something similar to the "Little Bear"
 	SetPixel(15,5,1);
