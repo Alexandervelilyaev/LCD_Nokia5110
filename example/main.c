@@ -4,7 +4,7 @@
 
 int main(void)
 {
-	InitLCD('B', 1, 2, 3, 4, 5);//In this case, the pinout is the following:
+	InitLCD(1, 2, 3, 4, 5);//In this case, the pinout is the following:
 	//LCD connected to PORTB (RST - PORTB1, SCE - PORTB2, DC - PORTB3, DIN - PORTB4, CLK - PORTB5)
 
 	//Drawing something similar to the "Little Bear"

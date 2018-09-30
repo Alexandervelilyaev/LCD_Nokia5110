@@ -3,40 +3,26 @@
 
 #define WIDTH 84
 #define HEIGHT 48
-#define SET_BIT(PORT, POS, VALUE) PORT = (PORT & ~(1 << POS)) | (VALUE << POS)
-#define GET_BIT(PORT, POS) (PORT & (1 << POS)) >> POS
+#define SET_BIT(DST, POS, VALUE) DST = (DST & ~(1 << POS)) | (VALUE << POS)
+#define GET_BIT(SRC, POS) (SRC & (1 << POS)) >> POS
 
-uint8_t PORT, RST, SCE, DC, DIN, CLK;
+uint8_t RST, SCE, DC, DIN, CLK;
 uint8_t buffer[WIDTH * 6];
-
-uint8_t GetPortAddress(uint8_t c)
-{
-	switch(c)
-	{
-		case 'B':
-		case 'b': return 0x05;
-		case 'C':
-		case 'c': return 0x08;
-		case 'D':
-		case 'd': return 0x0B;
-		default: return 0;
-	}
-}
 
 //Transmit byte by SPI
 void SendByte(uint8_t byte, uint8_t dc)
 {
-	SET_BIT(_SFR_IO8(PORT), SCE, 0);
-	SET_BIT(_SFR_IO8(PORT), DC, dc);
+	SET_BIT(PORTx, SCE, 0);
+	SET_BIT(PORTx, DC, dc);
 
 	for (uint8_t p = 8; p > 0; p--)
 	{
-		SET_BIT(_SFR_IO8(PORT), DIN, GET_BIT(byte, (p-1)));
-		SET_BIT(_SFR_IO8(PORT), CLK, 0);
-		SET_BIT(_SFR_IO8(PORT), CLK, 1);
+		SET_BIT(PORTx, DIN, GET_BIT(byte, (p-1)));
+		SET_BIT(PORTx, CLK, 0);
+		SET_BIT(PORTx, CLK, 1);
 	}
 
-	SET_BIT(_SFR_IO8(PORT), SCE, 1);
+	SET_BIT(PORTx, SCE, 1);
 }
 
 //Make command
@@ -101,11 +87,11 @@ void SetVop(uint8_t OP6, uint8_t OP5, uint8_t OP4, uint8_t OP3, uint8_t OP2, uin
 
 void Reset()
 {
-	SET_BIT(_SFR_IO8(PORT), RST, 1);
+	SET_BIT(PORTx, RST, 1);
 	_delay_ms(10);
-	SET_BIT(_SFR_IO8(PORT), RST, 0);
+	SET_BIT(PORTx, RST, 0);
 	_delay_ms(10);
-	SET_BIT(_SFR_IO8(PORT), RST, 1);
+	SET_BIT(PORTx, RST, 1);
 }
 
 //Clear buffer
@@ -118,16 +104,19 @@ void ClearBuffer()
 }
 
 //Set port and pin numbers, initialize lcd
-void InitLCD(uint8_t port, uint8_t rst, uint8_t sce, uint8_t dc, uint8_t din, uint8_t clk)
+void InitLCD(uint8_t rst, uint8_t sce, uint8_t dc, uint8_t din, uint8_t clk)
 {
-	PORT = GetPortAddress(port);
 	RST = rst;
 	SCE = sce;
 	DC = dc;
 	DIN = din;
 	CLK = clk;
 	
-	_SFR_IO8(PORT-1) = 0x00 | (1 << rst) | (1 << sce) | (1 << dc) | (1 << din) | (1 << clk);
+	SET_BIT(DDRx, rst, 1);
+	SET_BIT(DDRx, sce, 1);
+	SET_BIT(DDRx, dc, 1);
+	SET_BIT(DDRx, din, 1);
+	SET_BIT(DDRx, clk, 1);
 
 	Reset();
 	FunctionSet(0, 0, 1);//switch to extended instruction set
