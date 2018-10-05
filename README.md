@@ -1,6 +1,6 @@
 ![lm016l Banner](https://4u9ej3n0081av6bpl3yb4qtl-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/nokia5110_fronta.jpg)
 # AVR library for graphic display Nokia 5110(based on PCD8544)
-This library was developed and tested for microcontroller Atmega328p. But I'm sure that it will work for others microcontrollers of the AVR family. Library implements most necessary functions(according to datasheet).
+This library was developed and tested for microcontroller Atmega328p. But I'm sure that it will work for others microcontrollers of the AVR family. Library implements most necessary functions(according to [datasheet](datasheet/pcd8544.pdf)).
 
 ## Example
 ```c
